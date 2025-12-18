@@ -11,6 +11,8 @@ public class ProdReadyFeaturesApplication {
 
 		//This project stores details of week 4 of prod ready feature lecture.
 
+		//Using generated security password: 1bf0d63e-86a5-484b-81c7-629b1c0855b3
+
 	}
 
 }
