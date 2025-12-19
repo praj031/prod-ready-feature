@@ -1,39 +1,39 @@
 package com.codingShuttle.praj.prod_ready_features.prod_ready_features.controllers;
 
 import com.codingShuttle.praj.prod_ready_features.prod_ready_features.dto.PostDTO;
-import com.codingShuttle.praj.prod_ready_features.prod_ready_features.services.PostServices;
+import com.codingShuttle.praj.prod_ready_features.prod_ready_features.services.PostService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.EmptyStackException;
 import java.util.List;
-import java.util.Optional;
 
-@RequiredArgsConstructor
 @RestController
-@RequestMapping(path = "/api/posts")
+@RequestMapping(path = "/posts")
+@RequiredArgsConstructor
 public class PostController {
 
-    private final PostServices postServices;
+    private final PostService postService;
 
-    @GetMapping(path = "/getAllPost")
-    public List<PostDTO> getAllPost(){
-        return postServices.getAllPosts();
+    @GetMapping
+    public List<PostDTO> getAllPosts() {
+        return postService.getAllPosts();
     }
 
-    @GetMapping(path = "/getByID/{postId}")
-    public PostDTO getById(@PathVariable Long postId) {
-        return postServices.getPostByID(postId)
-                .orElseThrow(() -> new RuntimeException("Post not found with id " + postId));
+    @GetMapping("/{postId}")
+    public PostDTO getPostById(@PathVariable Long postId) {
+        return postService.getPostById(postId);
     }
 
+    @PostMapping
+    public PostDTO createNewPost(@RequestBody PostDTO inputPost) {
+        return postService.createNewPost(inputPost);
+    }
 
-    @PostMapping(path = "/createPostDTO")
-    public PostDTO  createPostDTO(@RequestBody PostDTO inputPost){
-        return postServices.createPostDTO(inputPost);
+    @PutMapping("{postId}")
+    public PostDTO updatePost(@RequestBody PostDTO inputPost,@PathVariable Long postId ) {
+        return postService.updatePost(inputPost, postId);
     }
 
 
 }
+

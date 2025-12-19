@@ -1,21 +1,14 @@
 package com.codingShuttle.praj.prod_ready_features.prod_ready_features.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import lombok.*;
-
-@Getter
-@Setter
-@NoArgsConstructor  // ← ADD THIS
-@AllArgsConstructor
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class PostDTO {
-
     private Long id;
-
     private String title;
-
     private String description;
-
-    //Jackson convert  the class to json, hence we need this  class.
-
 }

@@ -13,15 +13,13 @@ public class ApiError {
     private String error;
     private HttpStatus statusCode;
 
-    public ApiError(){
+    public ApiError() {
         this.timeStamp = LocalDateTime.now();
     }
 
-    public ApiError(String error, HttpStatus statusCode){
+    public ApiError(String error, HttpStatus statusCode) {
         this();
         this.error = error;
         this.statusCode = statusCode;
     }
-
-
 }
