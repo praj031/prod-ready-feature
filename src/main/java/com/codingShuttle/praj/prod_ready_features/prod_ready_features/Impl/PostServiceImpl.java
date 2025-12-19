@@ -9,6 +9,8 @@ import com.codingShuttle.praj.prod_ready_features.prod_ready_features.services.P
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,11 +20,22 @@ import java.util.stream.Collectors;
 @Service @RequiredArgsConstructor
 public class PostServiceImpl implements PostService{
 
+    Logger log = LoggerFactory.getLogger(PostServiceImpl.class);
+    //Logger definitions
+
     private final PostRepository postRepository;
     private final ModelMapper modelMapper;
 
     @Override
     public List<PostDTO> getAllPosts() {
+
+        log.info("Info logs");
+        log.warn("Warn log");
+        log.debug("Debug Log");
+        log.error("Error log");
+        log.trace("trace log");
+
+
         return postRepository
                 .findAll()
                 .stream()

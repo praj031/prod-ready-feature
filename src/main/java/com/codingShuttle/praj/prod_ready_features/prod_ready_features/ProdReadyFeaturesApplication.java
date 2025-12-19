@@ -21,4 +21,15 @@ public class ProdReadyFeaturesApplication {
 
 	}
 
+	/*
+
+	Swagger and APi
+
+	http://localhost:8084/v3/api-docs
+	http://localhost:8084/swagger-ui/index.html#/post-controller/getAllPosts  -- to showcase to recurter
+
+
+
+	 */
+
 }
