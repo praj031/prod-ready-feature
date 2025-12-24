@@ -5,8 +5,7 @@ import com.codingShuttle.praj.prod_ready_features.prod_ready_features.dto.PostDT
 import com.codingShuttle.praj.prod_ready_features.prod_ready_features.entites.PostEntity;
 import com.codingShuttle.praj.prod_ready_features.prod_ready_features.exception.ResourceNotFoundException;
 import com.codingShuttle.praj.prod_ready_features.prod_ready_features.repositories.PostRepository;
-import com.codingShuttle.praj.prod_ready_features.prod_ready_features.services.PostService;
-import lombok.AllArgsConstructor;
+import com.codingShuttle.praj.prod_ready_features.prod_ready_features.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -14,7 +13,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service @RequiredArgsConstructor

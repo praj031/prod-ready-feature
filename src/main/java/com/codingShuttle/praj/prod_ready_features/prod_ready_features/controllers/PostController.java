@@ -1,14 +1,14 @@
 package com.codingShuttle.praj.prod_ready_features.prod_ready_features.controllers;
 
 import com.codingShuttle.praj.prod_ready_features.prod_ready_features.dto.PostDTO;
-import com.codingShuttle.praj.prod_ready_features.prod_ready_features.services.PostService;
+import com.codingShuttle.praj.prod_ready_features.prod_ready_features.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/posts")
+@RequestMapping(path = "/api/posts")
 @RequiredArgsConstructor
 public class PostController {
 

@@ -1,10 +1,9 @@
-package com.codingShuttle.praj.prod_ready_features.prod_ready_features.services;
+package com.codingShuttle.praj.prod_ready_features.prod_ready_features.service;
 
 
 import com.codingShuttle.praj.prod_ready_features.prod_ready_features.dto.PostDTO;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface PostService {
 

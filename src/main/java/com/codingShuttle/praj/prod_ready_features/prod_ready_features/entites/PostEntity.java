@@ -12,6 +12,7 @@ import org.hibernate.envers.Audited;
 @Getter
 @Setter
 @Audited
+@Builder
 public class PostEntity extends AuditableEntities{
 
     @Id
