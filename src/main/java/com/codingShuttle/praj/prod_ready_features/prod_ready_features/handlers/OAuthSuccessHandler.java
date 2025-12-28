@@ -1,6 +1,7 @@
 package com.codingShuttle.praj.prod_ready_features.prod_ready_features.handlers;
 
 import com.codingShuttle.praj.prod_ready_features.prod_ready_features.entites.User;
+import com.codingShuttle.praj.prod_ready_features.prod_ready_features.entites.enums.Roles;
 import com.codingShuttle.praj.prod_ready_features.prod_ready_features.service.JwtService;
 import com.codingShuttle.praj.prod_ready_features.prod_ready_features.service.UserService;
 import jakarta.servlet.ServletException;
@@ -16,6 +17,8 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationSu
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.List;
 
 @Slf4j
 @Component
@@ -47,6 +50,7 @@ public class OAuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
                             .name(name)
                             .email(email)
                             .password("pass")
+                            .roles(new HashSet<>(List.of(Roles.USER)))
                             .build();
             user = userService.saveUser(createUser);
         }
@@ -58,10 +62,9 @@ public class OAuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
         cookie.setHttpOnly(true);
         response.addCookie(cookie);
 
-        String frontEndUrl = "http://localhost:8084/WelcomeHome.html?token="+accessToken;
+        String frontEndUrl = "http://localhost:8084/welcomeHome.html?token="+accessToken;
         getRedirectStrategy().sendRedirect(request,response,frontEndUrl);
-        ///  src/main/resources/static/WelcomeHome.html
-
+        // src/main/resources/static/WelcomeHome.html
 
 
     }
