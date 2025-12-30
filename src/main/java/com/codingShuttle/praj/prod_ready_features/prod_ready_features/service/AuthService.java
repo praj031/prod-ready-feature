@@ -20,7 +20,7 @@ public class AuthService {
 
 
 
-    //After we create the user, when we log-in we will fetch the value from the DB,
+    //After we create the user, when we log in we will fetch the value from the DB,
     //Now when we fetch the value from the DB we need to check the password and this will be done by the Authentication Manager and Authenticator.
     //So, now we are using bean of @Authentication to call in the authentication manager and decode it.
     public LoginResponseDTO login(LoginDTO loginDTO){
@@ -32,23 +32,18 @@ public class AuthService {
         String accessToken =  jwtService.generateAccessToken(user);
         String refreshToken = jwtService.generateRefreshToken(user);
         sessionService.generateNewSession(user,refreshToken);
-
-
         return new LoginResponseDTO(user.getId(), accessToken , refreshToken);
     }
 
 
     public LoginResponseDTO refreshToken(String refreshToken) {
 
-        Long userId = jwtService.getUserIdFromTokan(refreshToken);
+        Long userId = jwtService.getUserIdFromToken(refreshToken);
         sessionService.validateSession(refreshToken);
-
         User user = userService.getUserById(userId);
-
-
-
-        String accessToken =  jwtService.generateAccessToken(user);
-        return new LoginResponseDTO(user.getId(), accessToken , refreshToken);
-
+        //Using different variable so as to take in the new values
+        String accessToken1 =  jwtService.generateAccessToken(user);
+        String refreshToken1 = jwtService.generateRefreshToken(user);
+        return new LoginResponseDTO(user.getId(), accessToken1 , refreshToken1);
     }
 }

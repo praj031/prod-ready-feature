@@ -6,6 +6,7 @@ import com.codingShuttle.praj.prod_ready_features.prod_ready_features.entites.Us
 import com.codingShuttle.praj.prod_ready_features.prod_ready_features.exception.ResourceNotFoundException;
 import com.codingShuttle.praj.prod_ready_features.prod_ready_features.repositories.UserRepository;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -20,6 +21,7 @@ import org.springframework.stereotype.Service;
 import javax.swing.text.html.Option;
 import java.util.Optional;
 
+@Slf4j
 @Service
 @AllArgsConstructor
 public class UserService implements UserDetailsService {
@@ -70,5 +72,10 @@ public class UserService implements UserDetailsService {
 
 
 
-
+    //Delete user by its id given
+    public void deleteUserById(Long userId) {
+        log.info("User getting deleted = "+userId);
+        getUserById(userId);
+        userRepository.deleteById(userId);
+    }
 }

@@ -38,7 +38,7 @@ public class JwtService {
                 .claim("email",user.getEmail())
                 .claim("roles", user.getRoles().toString())
                 .issuedAt(new Date())
-                .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24 * 10))
+                .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 50))
                 .signWith(getSecreteKey())
                 .compact();
     }
@@ -50,13 +50,13 @@ public class JwtService {
                 Jwts.builder()
                         .subject(user.getId().toString())
                         .issuedAt(new Date())
-                        .expiration(new Date(System.currentTimeMillis() + 1000L * 60 * 60 * 24 * 180))
+                        .expiration(new Date(System.currentTimeMillis() + 1000L * 60 * 60 * 24 * 30 * 6))
                         .signWith(getSecreteKey())
                         .compact();
     }
 
     //Now we have to decode the token to get the user id
-    public Long getUserIdFromTokan(String token){
+    public Long getUserIdFromToken(String token){
         Claims claims = Jwts.parser()
                 .verifyWith(getSecreteKey())
                 .build()

@@ -34,6 +34,11 @@ public class PostController {
         return postService.updatePost(inputPost, postId);
     }
 
+    @DeleteMapping("/{postId}")
+    public void deletePostById(@PathVariable Long postID){
+        postService.deleteById(postID);
+    }
+
 
 }
 

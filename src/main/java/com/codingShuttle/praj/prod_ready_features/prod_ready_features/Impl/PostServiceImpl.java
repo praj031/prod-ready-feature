@@ -27,6 +27,7 @@ public class PostServiceImpl implements PostService{
     @Override
     public List<PostDTO> getAllPosts() {
 
+        //Just to test the logs
         log.info("Info logs");
         log.warn("Warn log");
         log.debug("Debug Log");
@@ -62,5 +63,10 @@ public class PostServiceImpl implements PostService{
         modelMapper.map(inputPost, olderPost);
         PostEntity savedPostEntity = postRepository.save(olderPost);
         return modelMapper.map(savedPostEntity, PostDTO.class);
+    }
+
+    @Override
+    public void deleteById(Long postID) {
+        postRepository.deleteById(postID);
     }
 }

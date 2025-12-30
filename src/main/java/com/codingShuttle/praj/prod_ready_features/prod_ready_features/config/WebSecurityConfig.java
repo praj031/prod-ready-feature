@@ -24,7 +24,14 @@ public class WebSecurityConfig {
 
     private final JwtAuthFilter jwtAuthFilter;
     private final OAuthSuccessHandler oAuthSuccessHandler;
-    private static final String[] publicRoutes = {"/auth/**","/error","/welcomeHome.html","/v3/api-docs","/swagger-ui/**"};
+
+
+    private static final String[] publicRoutes = {
+            "/auth/**","/error","/welcomeHome.html",
+            "/v3/api-docs","/swagger-ui/**","/api/auth/signup","/api/auth/login",
+            "/api/auth/refresh","/api/auth/subscription/buysubscription",
+            "/delete/**","/api/auth/logout"
+        };
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
@@ -32,7 +39,8 @@ public class WebSecurityConfig {
         httpSecurity
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers( publicRoutes).permitAll()
-                        .requestMatchers("/posts/**").hasRole(ADMIN.name())
+                        .requestMatchers("/auth/buysubscription").authenticated()
+                        .requestMatchers("/posts/**").authenticated()
                         .anyRequest().authenticated())
                 .csrf(csrfConfig -> csrfConfig.disable())
                 .sessionManagement(sessionConfig -> sessionConfig

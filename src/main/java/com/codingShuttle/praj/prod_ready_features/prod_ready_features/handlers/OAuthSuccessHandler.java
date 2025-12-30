@@ -51,6 +51,7 @@ public class OAuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
                             .email(email)
                             .password("pass")
                             .roles(new HashSet<>(List.of(Roles.USER)))
+                            .SESSION_COUNT(2)
                             .build();
             user = userService.saveUser(createUser);
         }
@@ -64,6 +65,7 @@ public class OAuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
         String frontEndUrl = "http://localhost:8084/welcomeHome.html?token="+accessToken;
         getRedirectStrategy().sendRedirect(request,response,frontEndUrl);
+        response.sendRedirect(frontEndUrl);
         // src/main/resources/static/WelcomeHome.html
 
 

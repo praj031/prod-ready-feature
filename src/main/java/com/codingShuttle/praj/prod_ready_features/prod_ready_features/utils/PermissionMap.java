@@ -22,12 +22,11 @@ public class PermissionMap {
 
     );
 
-    public static Set<SimpleGrantedAuthority> grantedAuthorityForRole(Set<Roles> roles){
-
-        return map.get(roles).stream()
+    public static Set<SimpleGrantedAuthority> grantedAuthorityForRole(Set<Roles> roles) {
+        return roles.stream()
+                .flatMap(role -> map.getOrDefault(role, Set.of()).stream())
                 .map(permissions -> new SimpleGrantedAuthority(permissions.name()))
                 .collect(Collectors.toSet());
-
     }
 
 }
